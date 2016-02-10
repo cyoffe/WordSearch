@@ -1,4 +1,4 @@
-package yoffe.wordsearch;
+package groupProject.wordsearch;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
