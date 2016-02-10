@@ -2,12 +2,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>yoffe</groupId>
-	<artifactId>yoffe-wordsearch</artifactId>
+	<groupId>groupProject</groupId>
+	<artifactId>groupProject-wordsearch</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>yoffe-wordsearch</name>
+	<name>groupProject.wordsearch</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
