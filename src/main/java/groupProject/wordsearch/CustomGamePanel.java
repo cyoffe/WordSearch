@@ -3,18 +3,22 @@ package groupProject.wordsearch;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
 
 public class CustomGamePanel extends JPanel {
 	private JList<String> list;
@@ -24,28 +28,57 @@ public class CustomGamePanel extends JPanel {
 	private DefaultListModel<String> model;
 	private int count = 0;
 	private JButton mainMenu;
+	private ImageIcon image;
 
 	public CustomGamePanel(final WordSearchGUI wordSearchGUI) {
-		setLayout(new BorderLayout(10, 10));
-		setBorder(BorderFactory.createRaisedBevelBorder());
 
-		instructions = new JLabel("Enter 10 Words");
+		setLayout(new BorderLayout(30, 30));
+		// setBackground(new Color(128, 128, 128, 90));
+		// setBorder(BorderFactory.createRaisedBevelBorder());
+		// setBackground(new Color(128,128,128,75));
+		// border.setBorder(new EmptyBorder(50, 50, 50, 50));
+
+		
+		
+		JPanel heading = new JPanel();
+		heading.setLayout(new BorderLayout());
+		// heading.setBorder(new LineBorder(Color.BLACK));
+		heading.setBackground(getBackground());
+
+		instructions = new JLabel("Enter 10 Words", JLabel.CENTER);
+		instructions.setFont(new Font("Arial Black", Font.PLAIN, 50));
+
+		mainMenu = new JButton("MAIN MENU");
+		mainMenu.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent arg0) {
+				wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(),
+						"Menu");
+
+			}
+
+		});
+
+		heading.add(instructions, BorderLayout.CENTER);
+		heading.add(mainMenu, BorderLayout.WEST);
 
 		JPanel listPanel = new JPanel();
 		listPanel.setSize(new Dimension(100, 00));
-		listPanel.setBackground(Color.ORANGE);
-		listPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
+		// listPanel.setBackground(Color.ORANGE);
+		listPanel.setBorder(new LineBorder(Color.BLUE, 3));
+		listPanel.setBackground(getBackground());
 
 		model = new DefaultListModel<String>();
 		list = new JList<String>(model);
+		list.setFont(new Font("Arial", Font.BOLD, 20));
 
 		listPanel.add(list);
 
 		JPanel words = new JPanel();
-		words.setLayout(new GridLayout(4, 1, 5, 5));
+		words.setLayout(new GridLayout(3, 1, 5, 5));
 		word = new JTextField();
 
-		addBtn = new JButton("ADD WORD");
+		addBtn = new JButton("ADD");
 		addBtn.requestFocus();
 		addBtn.addActionListener(new ActionListener() {
 
@@ -65,7 +98,7 @@ public class CustomGamePanel extends JPanel {
 
 		});
 
-		removeBtn = new JButton("REMOVE WORD");
+		removeBtn = new JButton("REMOVE");
 		removeBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -89,25 +122,19 @@ public class CustomGamePanel extends JPanel {
 
 		});
 
-		mainMenu = new JButton("MAIN MENU");
-		mainMenu.addActionListener(new ActionListener() {
-
-			public void actionPerformed(ActionEvent arg0) {
-				wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(),
-						"Menu");
-
-			}
-
-		});
+		JPanel addRemove = new JPanel();
+		addRemove.setBackground(getBackground());
+		addRemove.add(addBtn);
+		addRemove.add(removeBtn);
 
 		words.add(word);
-		words.add(addBtn);
-		words.add(removeBtn);
+		words.add(addRemove);
 		words.add(playGame);
-		words.add(mainMenu);
 
+		
 		add(words, BorderLayout.EAST);
 		add(listPanel, BorderLayout.CENTER);
-		add(instructions, BorderLayout.NORTH);
+		add(heading, BorderLayout.NORTH);
+		
 	}
 }
