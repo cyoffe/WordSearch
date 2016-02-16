@@ -19,7 +19,7 @@ public class TestApi {
 		try {
 
 			response = Unirest
-					.get("https://twinword-word-associations-v1.p.mashape.com/associations/?entry=fruit")
+					.get("https://twinword-word-associations-v1.p.mashape.com/associations/?entry=car")
 					.header("X-Mashape-Key",
 							"ijMTkO7tLDmshXQd8GckF53vZu0Yp17GXs8jsnu99o7YmrQMMu")
 					.asJson();
