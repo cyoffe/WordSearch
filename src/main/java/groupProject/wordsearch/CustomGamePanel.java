@@ -31,12 +31,9 @@ public class CustomGamePanel extends JPanel {
 	private ImageIcon image;
 
 	public CustomGamePanel(final WordSearchGUI wordSearchGUI) {
-
+		
 		setLayout(new BorderLayout(30, 30));
-		// setBackground(new Color(128, 128, 128, 90));
-		// setBorder(BorderFactory.createRaisedBevelBorder());
-		// setBackground(new Color(128,128,128,75));
-		// border.setBorder(new EmptyBorder(50, 50, 50, 50));
+		setBorder(new EmptyBorder(50, 50, 50, 50));
 
 		
 		
@@ -52,6 +49,7 @@ public class CustomGamePanel extends JPanel {
 		mainMenu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
+				wordSearchGUI.getCustomPanel().setVisible(false);
 				wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(),
 						"Menu");
 

@@ -1,6 +1,12 @@
 package groupProject.wordsearch;
 
+import java.applet.Applet;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 
@@ -10,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.Element;
+import javax.swing.text.html.ImageView;
 
 public class WordSearchGUI extends JFrame {
 
@@ -19,7 +27,6 @@ public class WordSearchGUI extends JFrame {
 	private CustomGamePanel customPanel;
 	private CategoryGamePanel categoryPanel;
 	private GamePanel gamePanel;
-	private ImageIcon image;
 
 	public WordSearchGUI() {
 		setTitle("Word Search");
@@ -27,17 +34,19 @@ public class WordSearchGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(300, 100);
 		setResizable(false);
-
-	
+		
+		JLabel background = new JLabel(
+				new ImageIcon("watercolorBackground.jpg"));
+		
 		Background b = new Background();
-		add(b);
-		validate();
+		JPanel container =  (JPanel) getContentPane();
 		
-		JPanel container = (JPanel) getContentPane();
-		container.setBorder(new EmptyBorder(50, 50, 50, 50));
+		container.add(b);
+		//container.add(b);
+				
 
-		
 		card = new JPanel();
+		card.add(background);
 		card.setLayout(cardLayout = new CardLayout());
 
 		menuPanel = new Menu(this);
@@ -49,13 +58,9 @@ public class WordSearchGUI extends JFrame {
 		card.add("Custom Puzzle", customPanel);
 		card.add("Category Puzzle", categoryPanel);
 		card.add("Game", gamePanel);
-		
+
 		container.add(card);
 		cardLayout.show(card, "Menu");
-		
-		
-		
-		
 
 	}
 

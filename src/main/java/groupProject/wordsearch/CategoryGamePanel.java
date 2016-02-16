@@ -17,6 +17,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
@@ -29,22 +30,17 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 	private ImageIcon image;
 	private int imgWidth;
 	private int imgHeight;
-	
 
 	public CategoryGamePanel(final WordSearchGUI wordSearchGUI) {
 		setLayout(new BorderLayout(30, 30));
-
-		
-	
-	    
-		
+		setBorder(new EmptyBorder(50, 50, 50, 50));
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new GridLayout(5, 2, 20, 20));
 
 		cat1 = new JButton("CAT 1");
 		cat1.setBorder(BorderFactory.createRaisedBevelBorder());
 		cat1.setBackground(Color.RED);
-		
+
 		cat2 = new JButton("CAT 2");
 		cat3 = new JButton("CAT 3");
 		cat4 = new JButton("CAT 4");
@@ -77,6 +73,7 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		mainMenu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
+				wordSearchGUI.getCategoryPanel().setVisible(false);
 				wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(),
 						"Menu");
 

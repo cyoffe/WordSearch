@@ -29,7 +29,7 @@ public class Menu extends JPanel implements ActionListener {
 
 	public Menu(final WordSearchGUI wordSearchGUI) {
 		this.wordSearchGUI = wordSearchGUI;
-
+		setBorder(new EmptyBorder(50,50,50,50));
 		setLayout(new BorderLayout());
 
 		Title t = new Title();
@@ -93,11 +93,16 @@ public class Menu extends JPanel implements ActionListener {
 		Object source = e.getSource();
 		CardLayout layout = wordSearchGUI.getCardLayout();
 		if (source == playCustom) {
+			wordSearchGUI.getMenuPanel().setVisible(false);
 			layout.show(wordSearchGUI.getCard(), "Custom Puzzle");
+			revalidate();
+			
 
 		}
 		if (source == playCategory) {
+			wordSearchGUI.getMenuPanel().setVisible(false);
 			layout.show(wordSearchGUI.getCard(), "Category Puzzle");
+			revalidate();
 		}
 		if (source == quit) {
 			wordSearchGUI.dispose();
