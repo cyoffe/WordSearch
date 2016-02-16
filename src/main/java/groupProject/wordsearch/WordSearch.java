@@ -31,7 +31,7 @@ public class WordSearch {
 		int col;
 
 		// do the following for all the words in the list
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 15; i++) {
 			placed = false;
 			lettersPlaced = 0;
 			tries = 0;

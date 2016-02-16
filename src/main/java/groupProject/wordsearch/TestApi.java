@@ -30,8 +30,8 @@ public class TestApi {
 
 		JSONArray array = response.getBody().getObject()
 				.getJSONArray("associations_array");
-		String[] words = new String[20];
-		for (int i = 0; i < 20; i++) {
+		String[] words = new String[15];
+		for (int i = 0; i < 15; i++) {
 			words[i] = array.getString(i).toString();
 			System.out.println(words[i]);
 
