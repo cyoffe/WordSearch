@@ -30,26 +30,40 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 	private ImageIcon image;
 	private int imgWidth;
 	private int imgHeight;
-
+	private WordSearchGUI wordSearchGUI;
+	
 	public CategoryGamePanel(final WordSearchGUI wordSearchGUI) {
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new GridLayout(5, 2, 20, 20));
+		
+		this.wordSearchGUI = wordSearchGUI;
 
-		cat1 = new JButton("CAT 1");
+		cat1 = new JButton("HOUSE");
 		cat1.setBorder(BorderFactory.createRaisedBevelBorder());
 		cat1.setBackground(Color.RED);
 
-		cat2 = new JButton("CAT 2");
-		cat3 = new JButton("CAT 3");
-		cat4 = new JButton("CAT 4");
-		cat5 = new JButton("CAT 5");
-		cat6 = new JButton("CAT 6");
-		cat7 = new JButton("CAT 7");
-		cat8 = new JButton("CAT 8");
-		cat9 = new JButton("CAT 9");
-		cat10 = new JButton("CAT 10");
+		cat2 = new JButton("SOUND");
+		cat3 = new JButton("FRUIT");
+		cat4 = new JButton("CARS");
+		cat5 = new JButton("NUMBERS");
+		cat6 = new JButton("COMPUTERS");
+		cat7 = new JButton("SPORTS");
+		cat8 = new JButton("POLITICS");
+		cat9 = new JButton("WEATHER");
+		cat10 = new JButton("MEDICAL");
+		
+		cat1.addActionListener(this);
+		cat2.addActionListener(this);
+		cat3.addActionListener(this);
+		cat4.addActionListener(this);
+		cat5.addActionListener(this);
+		cat6.addActionListener(this);
+		cat7.addActionListener(this);
+		cat8.addActionListener(this);
+		cat9.addActionListener(this);
+		cat10.addActionListener(this);
 
 		buttons.add(cat1);
 		buttons.add(cat2);
@@ -92,6 +106,17 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		JButton source = (JButton) e.getSource();
 		String category = source.getText();
 
+		//TestApi api = new TestApi(category);
+		//String[] words = api.getApi();
+		String[] words = new String[]{
+				"dog", "cat", "mouse"
+		};
+		wordSearchGUI.setGamePanel(words);
+		wordSearchGUI.getCategoryPanel().setVisible(false);
+		wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(), "Game");
+		revalidate();
+		
+		
 		source.setContentAreaFilled(false);
 	}
 

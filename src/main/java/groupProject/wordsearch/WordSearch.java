@@ -35,9 +35,9 @@ public class WordSearch {
 			placed = false;
 			lettersPlaced = 0;
 			tries = 0;
-			
+
 			// while this word is not placed, try many times to add it
-			while (!placed && tries < 100) {
+			while (!placed && tries < 400) {
 
 				// ensure that backup[][] and letters[][] are the same
 				for (int k = 0; k < 20; k++) {
@@ -59,7 +59,7 @@ public class WordSearch {
 												// 2 = Diagonal
 
 				// randomly choose a starting box,
-				// ensuring that the word will not exceed 
+				// ensuring that the word will not exceed
 				// the dimensions of the board
 				row = r.nextInt(20 - words[i].length());
 				col = r.nextInt(20 - words[i].length());
@@ -71,10 +71,10 @@ public class WordSearch {
 					// and advance position in the grid
 					if (backup[row][col] == ' '
 							|| backup[row][col] == words[i].charAt(letterNum)) {
-																		
-						letters[row][col] = words[i].charAt(letterNum);						
+
+						letters[row][col] = words[i].charAt(letterNum);
 						lettersPlaced++;
-						
+
 						if (direction == 0) {
 							col++;
 						} else if (direction == 1) {
@@ -83,8 +83,8 @@ public class WordSearch {
 							col++;
 							row++;
 						}
-						
-						if(lettersPlaced == words[i].length()){
+
+						if (lettersPlaced == words[i].length()) {
 							placed = true;
 							System.out.println(words[i]);
 						}
@@ -92,7 +92,7 @@ public class WordSearch {
 
 					// if the letter cannot go here, the word cannot go here
 					// and need to take away all letters added from this word
-					else {			
+					else {
 						for (int k = letterNum; letterNum > 0; letterNum--) {
 							if (direction == 0) {
 								col--;
@@ -104,9 +104,10 @@ public class WordSearch {
 							}
 
 							letters[row][col] = backup[row][col];
-							
-						}break;
-						
+
+						}
+						break;
+
 					}
 				}
 
@@ -116,7 +117,7 @@ public class WordSearch {
 
 				tries++;
 			}// end while not placed
-				
+
 		}// went through all words in the list
 
 		// fill empty spaces
