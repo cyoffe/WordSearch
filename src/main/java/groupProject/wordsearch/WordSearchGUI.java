@@ -34,24 +34,23 @@ public class WordSearchGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(300, 100);
 		setResizable(false);
-		
+
 		JLabel background = new JLabel(
 				new ImageIcon("watercolorBackground.jpg"));
-		
+
 		Background b = new Background();
-		JPanel container =  (JPanel) getContentPane();
-		
-		//container.add(b);
-				
+		JPanel container = (JPanel) getContentPane();
+
+		// container.add(b);
 
 		card = new JPanel();
-		//card.add(background);
+		// card.add(background);
 		card.setLayout(cardLayout = new CardLayout());
 
 		menuPanel = new Menu(this);
 		customPanel = new CustomGamePanel(this);
 		categoryPanel = new CategoryGamePanel(this);
-		gamePanel = new GamePanel(this, new String[]{});
+		gamePanel = new GamePanel(this);
 
 		card.add("Menu", menuPanel);
 		card.add("Custom Puzzle", customPanel);
@@ -87,15 +86,9 @@ public class WordSearchGUI extends JFrame {
 		return card;
 	}
 
-
 	public static void main(String[] args) {
 		WordSearchGUI gui = new WordSearchGUI();
 		gui.setVisible(true);
-	}
-
-	public void setGamePanel(String[] words) {
-		this.gamePanel = new GamePanel(this, words);
-		
 	}
 
 }

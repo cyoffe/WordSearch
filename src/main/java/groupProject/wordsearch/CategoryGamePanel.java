@@ -31,13 +31,14 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 	private int imgWidth;
 	private int imgHeight;
 	private WordSearchGUI wordSearchGUI;
-	
+	private WordSearch wordSearch;
+
 	public CategoryGamePanel(final WordSearchGUI wordSearchGUI) {
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new GridLayout(5, 2, 20, 20));
-		
+
 		this.wordSearchGUI = wordSearchGUI;
 
 		cat1 = new JButton("HOUSE");
@@ -53,7 +54,7 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		cat8 = new JButton("POLITICS");
 		cat9 = new JButton("WEATHER");
 		cat10 = new JButton("MEDICAL");
-		
+
 		cat1.addActionListener(this);
 		cat2.addActionListener(this);
 		cat3.addActionListener(this);
@@ -106,18 +107,16 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		JButton source = (JButton) e.getSource();
 		String category = source.getText();
 
-		//TestApi api = new TestApi(category);
-		//String[] words = api.getApi();
-		String[] words = new String[]{
-				"dog", "cat", "mouse"
-		};
-		wordSearchGUI.setGamePanel(words);
+		 TestApi api = new TestApi(category);
+		 String[] words = api.getApi();
+		 WordSearch search = new WordSearch(words);
+		wordSearchGUI.getGamePanel().setGame(words, search.getGrid());
 		wordSearchGUI.getCategoryPanel().setVisible(false);
 		wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(), "Game");
-		revalidate();
-		
-		
-		source.setContentAreaFilled(false);
+	}
+
+	public WordSearch getWordSearch() {
+		return wordSearch;
 	}
 
 }
