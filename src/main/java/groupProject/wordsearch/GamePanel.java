@@ -106,18 +106,13 @@ public class GamePanel extends JPanel {
 		cells = board;
 		for (int row = 0; row < 20; row++) {
 			for (int col = 0; col < 20; col++) {
-				JLabel l = new JLabel(String.valueOf(board[row][col]
-						.getLetter()), JLabel.CENTER);
-				//System.out.println(board[row][col].getLetter());
-				//JLabel l =new JLabel(String.valueOf(r.nextChar()), JLabel.CENTER);
+				cells[row][col].setDimension(new Dimension(grid.getWidth() / 20,
+						grid.getHeight() / 20));
+				grid.add(cells[row][col], JButton.CENTER);
+				
+				//JLabel l = new JLabel(String.valueOf(board[row][col]
+				//	.getLetter()), JLabel.CENTER);
 
-				//l.setBorder(new LineBorder(Color.BLUE, 1));
-				Dimension d = new Dimension(grid.getWidth() / 20,
-						grid.getHeight() / 20);
-				l.setMinimumSize(d);
-				l.setPreferredSize(d);
-				l.setMaximumSize(d);
-				grid.add(l);
 			}
 		}
 		
