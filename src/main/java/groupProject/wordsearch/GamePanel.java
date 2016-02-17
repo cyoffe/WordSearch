@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -102,21 +103,29 @@ public class GamePanel extends JPanel {
 		for (String w : words) {
 			model.addElement(w);
 		}
-		
+
 		cells = board;
 		for (int row = 0; row < 20; row++) {
 			for (int col = 0; col < 20; col++) {
-				cells[row][col].setDimension(new Dimension(grid.getWidth() / 20,
-						grid.getHeight() / 20));
+				cells[row][col].setDimension(new Dimension(
+						grid.getWidth() / 20, grid.getHeight() / 20));
+				cells[row][col].addActionListener(new ActionListener() {
+
+					public void actionPerformed(ActionEvent e) {
+						Object source = e.getSource();
+						((JButton) source).setBackground(Color.YELLOW);
+						repaint();
+						revalidate();
+					}
+
+				});
 				grid.add(cells[row][col], JButton.CENTER);
-				
-				//JLabel l = new JLabel(String.valueOf(board[row][col]
-				//	.getLetter()), JLabel.CENTER);
+
+				// JLabel l = new JLabel(String.valueOf(board[row][col]
+				// .getLetter()), JLabel.CENTER);
 
 			}
 		}
-		
 
 	}
-
 }

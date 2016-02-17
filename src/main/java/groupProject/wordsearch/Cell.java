@@ -5,11 +5,13 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
-public class Cell extends JButton implements ActionListener {
+public class Cell extends JButton implements MouseListener {
 	private char letter;
 	private boolean clicked;
 	private int row;
@@ -29,11 +31,18 @@ public class Cell extends JButton implements ActionListener {
 		this.clicked = false;
 		this.setText(String.valueOf(letter));
 		this.setFont(new Font("Arial", Font.BOLD, 13));
-		this.setBackground(null);
 		setBorder(null);
 		setBorderPainted(false);
 		setContentAreaFilled(false);
 		setOpaque(false);
+		this.addActionListener(new ActionListener(){
+
+			public void actionPerformed(ActionEvent e) {
+				setBackground(Color.YELLOW);
+				
+			}
+			
+		});
 
 	}
 
@@ -60,9 +69,37 @@ public class Cell extends JButton implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		Object source= e.getSource();
+		Object source = e.getSource();
 		((JComponent) source).setBackground(Color.YELLOW);
-		
+		super.repaint();
+
+	}
+
+	public void mouseClicked(MouseEvent e) {
+		Object source = e.getSource();
+		((JComponent) source).setBackground(Color.YELLOW);
+		super.repaint();
+
+	}
+
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
 	}
 
 }
