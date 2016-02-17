@@ -43,7 +43,7 @@ public class TestApi extends Thread{
 		return words;
 	}
 
-	/*public static void main(String[] args) {
+/*	public static void main(String[] args) {
 
 		HttpResponse<JsonNode> response = null;
 		try {
@@ -68,11 +68,11 @@ public class TestApi extends Thread{
 		}
 
 		WordSearch wordSearch = new WordSearch(words);
-		char[][] letters = wordSearch.getGrid();
+		Cell[][] letters = wordSearch.getGrid();
 		System.out.print("|");
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
-				System.out.print(letters[i][j] + "|");
+				System.out.print(letters[i][j].getLetter() + "|");
 			}
 			System.out.print("\n|");
 		}

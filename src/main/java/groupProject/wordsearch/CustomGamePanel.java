@@ -7,6 +7,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
@@ -26,23 +27,22 @@ public class CustomGamePanel extends JPanel {
 	private JLabel instructions;
 	private JButton addBtn, removeBtn, playGame;
 	private DefaultListModel<String> model;
-	private int count = 0;
+	private String[] wordList;
+	private int count;
 	private JButton mainMenu;
 	private ImageIcon image;
 
 	public CustomGamePanel(final WordSearchGUI wordSearchGUI) {
-		
+
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
 
-		
-		
 		JPanel heading = new JPanel();
 		heading.setLayout(new BorderLayout());
 		// heading.setBorder(new LineBorder(Color.BLACK));
 		heading.setBackground(getBackground());
 
-		instructions = new JLabel("Enter 10 Words", JLabel.CENTER);
+		instructions = new JLabel("Enter 15 Words", JLabel.CENTER);
 		instructions.setFont(new Font("Arial Black", Font.PLAIN, 50));
 
 		mainMenu = new JButton("MAIN MENU");
@@ -61,14 +61,16 @@ public class CustomGamePanel extends JPanel {
 		heading.add(mainMenu, BorderLayout.WEST);
 
 		JPanel listPanel = new JPanel();
-		listPanel.setSize(new Dimension(100, 00));
+		listPanel.setSize(new Dimension(100, 100));
 		// listPanel.setBackground(Color.ORANGE);
 		listPanel.setBorder(new LineBorder(Color.BLUE, 3));
-		listPanel.setBackground(getBackground());
+		// listPanel.setBackground(getBackground());
 
 		model = new DefaultListModel<String>();
+		wordList = new String[15];
 		list = new JList<String>(model);
 		list.setFont(new Font("Arial", Font.BOLD, 20));
+		list.setBackground(null);
 
 		listPanel.add(list);
 
@@ -81,8 +83,9 @@ public class CustomGamePanel extends JPanel {
 		addBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				if (model.size() < 10) {
+				if (model.size() < 15) {
 					model.addElement(word.getText());
+					wordList[count++] = word.getText();
 					word.setText("");
 					word.requestFocus();
 					list.repaint();
@@ -113,6 +116,11 @@ public class CustomGamePanel extends JPanel {
 		playGame.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
+
+				WordSearch search = new WordSearch(wordList);
+				wordSearchGUI.getGamePanel().setGame(wordList,
+						search.getGrid());
+				wordSearchGUI.getCategoryPanel().setVisible(false);
 				wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(),
 						"Game");
 
@@ -129,10 +137,9 @@ public class CustomGamePanel extends JPanel {
 		words.add(addRemove);
 		words.add(playGame);
 
-		
 		add(words, BorderLayout.EAST);
 		add(listPanel, BorderLayout.CENTER);
 		add(heading, BorderLayout.NORTH);
-		
+
 	}
 }
