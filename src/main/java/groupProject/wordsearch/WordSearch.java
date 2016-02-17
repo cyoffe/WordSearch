@@ -1,6 +1,11 @@
 package groupProject.wordsearch;
 
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
+
+import javax.swing.JComponent;
 
 /*public class WordSearch {
  private Cell[][] letters = new Cell[20][20];
@@ -461,6 +466,7 @@ public class WordSearch {
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
 				cells[i][j] = new Cell(letters[i][j], i,j);
+				
 				//cells[i][j].setBorderPainted( false );
 				//cells[i][j].setFocusPainted( false );
 			}
