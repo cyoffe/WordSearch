@@ -41,10 +41,10 @@ public class WordSearchGUI extends JFrame {
 		Background b = new Background();
 		JPanel container = (JPanel) getContentPane();
 
-		// container.add(b);
+		//container.add(b);
 
 		card = new JPanel();
-		// card.add(background);
+		//card.add(background);
 		card.setLayout(cardLayout = new CardLayout());
 
 		menuPanel = new Menu(this);

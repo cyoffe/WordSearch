@@ -10,8 +10,9 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 
-public class Cell extends JButton implements MouseListener {
+public class Cell extends JLabel implements MouseListener {
 	private char letter;
 	private boolean clicked;
 	private int row;
@@ -28,21 +29,21 @@ public class Cell extends JButton implements MouseListener {
 		} else {
 			this.letter = letter;
 		}
-		this.clicked = false;
+		//this.clicked = false;
 		this.setText(String.valueOf(letter));
 		this.setFont(new Font("Arial", Font.BOLD, 13));
 		setBorder(null);
-		setBorderPainted(false);
-		setContentAreaFilled(false);
+		//setBorderPainted(false);
+		//setContentAreaFilled(false);
 		setOpaque(false);
-		this.addActionListener(new ActionListener(){
+		/*this.addActionListener(new ActionListener(){
 
 			public void actionPerformed(ActionEvent e) {
 				setBackground(Color.YELLOW);
 				
 			}
 			
-		});
+		});*/
 
 	}
 

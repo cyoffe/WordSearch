@@ -5,8 +5,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -28,16 +32,16 @@ public class GamePanel extends JPanel {
 	private JPanel gridPanel;
 	private JPanel grid;
 	private Cell[][] cells;
+	private String[] words;
+	private StringBuilder lettersSelected;
+	private int startX;
+	private int startY;
+	private int endX;
+	private int endY;
 
 	public GamePanel(final WordSearchGUI wordSearchGUI) {
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
-
-		/*
-		 * if (words != null) { for (String w : this.words) {
-		 * model.addElement(w); } this.wordSearch = new WordSearch(); } else {
-		 * wordSearch = new WordSearch(); }
-		 */
 
 		gridPanel = new JPanel();
 		gridPanel.setLayout(new BorderLayout());
@@ -93,13 +97,11 @@ public class GamePanel extends JPanel {
 
 	}
 
-	/*
-	 * public void setWords(String[] words) { //model.clear(); for (String w :
-	 * words) { model.addElement(w); } this.validate(); }
-	 */
+	
 
 	public void setGame(String[] words, Cell[][] board) {
 		grid.removeAll();
+		this.words = words;
 		for (String w : words) {
 			model.addElement(w);
 		}
@@ -107,25 +109,133 @@ public class GamePanel extends JPanel {
 		cells = board;
 		for (int row = 0; row < 20; row++) {
 			for (int col = 0; col < 20; col++) {
+
 				cells[row][col].setDimension(new Dimension(
 						grid.getWidth() / 20, grid.getHeight() / 20));
-				cells[row][col].addActionListener(new ActionListener() {
-
-					public void actionPerformed(ActionEvent e) {
-						Object source = e.getSource();
-						((JButton) source).setBackground(Color.YELLOW);
-						repaint();
-						revalidate();
-					}
-
-				});
 				grid.add(cells[row][col], JButton.CENTER);
-
-				// JLabel l = new JLabel(String.valueOf(board[row][col]
-				// .getLetter()), JLabel.CENTER);
+				
 
 			}
 		}
+		
+		grid.addMouseListener(new MouseListener() {
 
+			
+			public void mousePressed(MouseEvent e) {
+				startX = 19 - (e.getX() / (cells[0][0].getWidth()));
+				startY = 19 - (e.getY() / (cells[0][0].getHeight()));
+				
+			}
+
+			public void mouseReleased(MouseEvent e) {
+				endX = 19 - (e.getX() / (cells[0][0].getWidth()));
+				endY = 19 - (e.getY() / (cells[0][0].getHeight()));
+				
+				int index = checkWord();
+				
+
+			}
+
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+
+			}
+
+		});
+
+	}
+
+	// checks if the letters selected are a word in the list
+	// returns the index of the word in the array or -1 if not found
+	public int checkWord(){
+		lettersSelected = new StringBuilder();
+		int distance;
+		char letter;
+		
+		//determine if word is horizontal, vertical, or diagonal
+		//and add letters to StringBuffer
+		
+		
+		// vertical word downwards
+        if (startX == endX && startY < endY) {
+            for (int i = startY; i <= endY; ++i) {
+                lettersSelected.append(cells[i][startX].getLetter());
+                cells[i][startX].setBackground(Color.YELLOW);
+                repaint();
+                
+            }System.out.println(lettersSelected.toString());
+        }
+        // vertical word upwards
+        else if (startX == endX && startY > endY) {
+            for (int i = startY; i >= endY; --i) {
+                lettersSelected.append(cells[i][startX].getLetter());
+                cells[i][startX].setBackground(Color.YELLOW);
+                repaint();
+                
+            }System.out.println(lettersSelected.toString());
+        }
+        // horizontal word left->right
+        else if (startY == endY && startX < endX) {
+            for (int i = startX; i <= endX; ++i) {
+            	lettersSelected.append(cells[startY][i].getLetter());
+            	cells[startY][i].setBackground(Color.YELLOW);
+                repaint();
+                
+            }System.out.println(lettersSelected.toString());
+        }
+        // horizontal word right->left
+        else if (startY == endY && startX > endX) {
+            for (int i = startX; i >= endX; --i) {
+                lettersSelected.append(cells[startY][i].getLetter());
+                cells[startY][i].setBackground(Color.YELLOW);
+                repaint();
+                
+            }System.out.println(lettersSelected.toString());
+        }
+        // \ diagonal upper left to lower right
+        else if (endX - startX == endY - startY && startX < endX) {
+            for (int i = 0; i <= (endX - startX); ++i) {
+            	lettersSelected.append(cells[startY + i][startX + i].getLetter());                
+                cells[startY + i][startX + i].setBackground(Color.YELLOW);
+                repaint();
+               
+
+            } System.out.println(lettersSelected.toString());
+        }
+        // \ diagonal lower right to upper left
+        else if (endX - startX == endY - startY && startX > endX) {
+            for (int i = 0; i <= (startX - endX); ++i) {
+                lettersSelected.append(cells[startY - i][startX - i].getLetter());
+                cells[startY - i][startX - i].setBackground(Color.YELLOW);
+                repaint();
+                
+            }System.out.println(lettersSelected.toString());
+        }
+        else {	// illegal selection = not a line
+        	return -1;
+        }
+        
+		
+		//check if it's a word
+		for(int i = 0; i < words.length; i++){
+			if(lettersSelected.toString().equalsIgnoreCase(words[i])){
+				System.out.println(lettersSelected.toString());
+				lettersSelected.setLength(0); 	//clears stringbuffer
+				
+				return i;
+			}
+		}
+		lettersSelected.setLength(0);
+		return -1;
 	}
 }

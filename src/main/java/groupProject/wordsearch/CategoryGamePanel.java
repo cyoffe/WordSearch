@@ -107,9 +107,9 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		JButton source = (JButton) e.getSource();
 		String category = source.getText();
 
-		 TestApi api = new TestApi(category);
-		 String[] words = api.getApi();
-		 WordSearch search = new WordSearch(words);
+		TestApi api = new TestApi(category);
+		String[] words = api.getApi();
+		WordSearch search = new WordSearch(words);
 		wordSearchGUI.getGamePanel().setGame(words, search.getGrid());
 		wordSearchGUI.getCategoryPanel().setVisible(false);
 		wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(), "Game");
