@@ -39,7 +39,6 @@ public class CustomGamePanel extends JPanel {
 
 		JPanel heading = new JPanel();
 		heading.setLayout(new BorderLayout());
-		// heading.setBorder(new LineBorder(Color.BLACK));
 		heading.setBackground(getBackground());
 
 		instructions = new JLabel("Enter 15 Words", JLabel.CENTER);
@@ -77,6 +76,7 @@ public class CustomGamePanel extends JPanel {
 		JPanel words = new JPanel();
 		words.setLayout(new GridLayout(3, 1, 5, 5));
 		word = new JTextField();
+		word.requestFocus();
 
 		addBtn = new JButton("ADD");
 		addBtn.requestFocus();
@@ -105,6 +105,7 @@ public class CustomGamePanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (model.size() > 0) {
 					int index = list.getSelectedIndex();
+					//list.remove(index);
 					model.remove(index);
 					list.repaint();
 				}

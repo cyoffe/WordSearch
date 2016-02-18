@@ -1,11 +1,6 @@
 package groupProject.wordsearch;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
-
-import javax.swing.JComponent;
 
 public class WordSearch {
 	private char[][] letters = new char[20][20];
@@ -76,7 +71,8 @@ public class WordSearch {
 					// if this spot is available, add the next letter
 					// and advance position in the grid
 					if (backup[row][col] == ' '
-							|| backup[row][col] == this.words[i].charAt(letterNum)) {
+							|| backup[row][col] == this.words[i]
+									.charAt(letterNum)) {
 
 						letters[row][col] = this.words[i].charAt(letterNum);
 						lettersPlaced++;
@@ -92,7 +88,7 @@ public class WordSearch {
 
 						if (lettersPlaced == this.words[i].length()) {
 							placed = true;
-							
+
 						}
 					}
 
@@ -123,19 +119,18 @@ public class WordSearch {
 		}// went through all words in the list
 
 		// fill empty spaces
-		//fill();
-		
+		fill();
+
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
-				cells[i][j] = new Cell(letters[i][j], i,j);
-				
-				//cells[i][j].setBorderPainted( false );
-				//cells[i][j].setFocusPainted( false );
+				cells[i][j] = new Cell(letters[i][j]);
+
+				// cells[i][j].setBorderPainted( false );
+				// cells[i][j].setFocusPainted( false );
 			}
 		}
 		return cells;
 	}
-	
 
 	private String flip(String word) {
 		StringBuilder reverse = new StringBuilder();

@@ -27,9 +27,6 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 			cat10;
 	private JLabel instructions;
 	private JButton mainMenu;
-	private ImageIcon image;
-	private int imgWidth;
-	private int imgHeight;
 	private WordSearchGUI wordSearchGUI;
 	private WordSearch wordSearch;
 
@@ -46,14 +43,32 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		cat1.setBackground(Color.RED);
 
 		cat2 = new JButton("SOUND");
+		cat2.setBorder(BorderFactory.createRaisedBevelBorder());
+		cat2.setBackground(Color.ORANGE);
 		cat3 = new JButton("FRUIT");
+		cat3.setBorder(BorderFactory.createRaisedBevelBorder());
+		cat3.setBackground(Color.YELLOW);
 		cat4 = new JButton("CARS");
+		cat4.setBorder(BorderFactory.createRaisedBevelBorder());
+		cat4.setBackground(Color.GREEN);
 		cat5 = new JButton("NUMBERS");
+		cat5.setBorder(BorderFactory.createRaisedBevelBorder());
+		cat5.setBackground(Color.BLUE);
 		cat6 = new JButton("COMPUTERS");
+		cat6.setBorder(BorderFactory.createRaisedBevelBorder());
+		cat6.setBackground(Color.MAGENTA);
 		cat7 = new JButton("SPORTS");
+		cat7.setBorder(BorderFactory.createRaisedBevelBorder());
+		cat7.setBackground(Color.PINK);
 		cat8 = new JButton("POLITICS");
+		cat8.setBorder(BorderFactory.createRaisedBevelBorder());
+		cat8.setBackground(Color.LIGHT_GRAY);
 		cat9 = new JButton("WEATHER");
+		cat9.setBorder(BorderFactory.createRaisedBevelBorder());
+		cat9.setBackground(Color.GRAY);
 		cat10 = new JButton("MEDICAL");
+		cat10.setBorder(BorderFactory.createRaisedBevelBorder());
+		cat10.setBackground(Color.WHITE);
 
 		cat1.addActionListener(this);
 		cat2.addActionListener(this);
@@ -85,6 +100,8 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		instructions.setFont(new Font("Arial Black", Font.PLAIN, 50));
 
 		mainMenu = new JButton("MAIN MENU");
+		mainMenu.setBorder(BorderFactory.createRaisedBevelBorder());
+		mainMenu.setBackground(Color.CYAN);
 		mainMenu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -107,10 +124,12 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		JButton source = (JButton) e.getSource();
 		String category = source.getText();
 
-		TestApi api = new TestApi(category);
+		ApiThread api = new ApiThread(category);
 		String[] words = api.getApi();
 		WordSearch search = new WordSearch(words);
+		
 		wordSearchGUI.getGamePanel().setGame(words, search.getGrid());
+		wordSearchGUI.getGamePanel().setCategory(category);
 		wordSearchGUI.getCategoryPanel().setVisible(false);
 		wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(), "Game");
 	}
