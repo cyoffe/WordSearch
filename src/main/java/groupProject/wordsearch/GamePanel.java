@@ -33,7 +33,7 @@ public class GamePanel extends JPanel {
 	private JButton mainMenu;
 	private StringBuilder lettersSelected;
 	private int startX, startY, endX, endY;
-	private String category;
+	private String instruction;
 
 	private WordSearchGUI wordSearchGUI;
 
@@ -44,7 +44,7 @@ public class GamePanel extends JPanel {
 
 		this.wordSearchGUI = wordSearchGUI;
 		cellsClicked = new Stack<Cell>();
-		category = "Word Search";
+		instruction = "CLICK AND DRAG TO SELECT A WORD";
 		gridPanel = new JPanel();
 		gridPanel.setLayout(new BorderLayout());
 		gridPanel.setBorder(new LineBorder(Color.WHITE, 3));
@@ -60,14 +60,20 @@ public class GamePanel extends JPanel {
 
 		listPanel = new WordList(this);
 
+		Dimension d = new Dimension(this.getWidth(), 75);
 		heading = new JPanel();
+		heading.setPreferredSize(d);
+		heading.setMaximumSize(d);
+		heading.setMinimumSize(d);
 		heading.setLayout(new BorderLayout());
 		heading.setBorder(new LineBorder(Color.WHITE));
 		heading.setBackground(new Color(17, 0, 28));
 
-		instructions = new JLabel(category.toUpperCase(), JLabel.CENTER);
-		instructions.setFont(new Font("Arial Black", Font.PLAIN, 50));
+		instructions = new JLabel(instruction, JLabel.CENTER);
+		instructions.setFont(new Font("Arial Black", Font.PLAIN, 25));
 		instructions.setForeground(new Color(197, 100, 255));
+
+
 
 		mainMenu = new JButton("MAIN MENU");
 		mainMenu.setBorder(BorderFactory.createRaisedBevelBorder());
@@ -278,9 +284,5 @@ public class GamePanel extends JPanel {
 		return reverse.toString();
 	}
 
-	public void setCategory(String name) {
-		category = name;
-		repaint();
-	}
 
 }

@@ -43,7 +43,6 @@ public class ApiThread extends Thread {
 		}
 		search = new WordSearch(words);
 		wordSearchGUI.getGamePanel().setGame(words, search.getGrid());
-		wordSearchGUI.getGamePanel().setCategory(category);
 		wordSearchGUI.getCategoryPanel().setVisible(false);
 		wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(), "Game");
 	}

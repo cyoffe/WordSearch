@@ -57,7 +57,7 @@ public class WordSearch {
 
 				// randomly chooses the direction
 				int direction = r.nextInt(3); // 0 = Horizontal, 1 = Vertical,
-												// 2 = Diagonal
+				// 2 = Diagonal
 
 				// randomly choose a starting box,
 				// ensuring that the word will not exceed
@@ -119,14 +119,12 @@ public class WordSearch {
 		}// went through all words in the list
 
 		// fill empty spaces
-		//fill();
+		fill();
 
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
 				cells[i][j] = new Cell(letters[i][j]);
 
-				// cells[i][j].setBorderPainted( false );
-				// cells[i][j].setFocusPainted( false );
 			}
 		}
 		return cells;

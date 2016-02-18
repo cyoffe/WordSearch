@@ -18,11 +18,12 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private JButton cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9,
-			cat10;
+	cat10;
 	private JLabel instructions;
 	private JButton mainMenu;
 	private WordSearchGUI wordSearchGUI;
 	private WordSearch wordSearch;
+	private JPanel heading;
 
 	public CategoryGamePanel(final WordSearchGUI wordSearchGUI) {
 		setLayout(new BorderLayout(30, 30));
@@ -89,7 +90,7 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		buttons.add(cat9);
 		buttons.add(cat10);
 
-		JPanel heading = new JPanel();
+		heading = new JPanel();
 		heading.setBackground(new Color(0, 7, 28));
 		heading.setLayout(new BorderLayout());
 		heading.setBorder(new LineBorder(Color.WHITE));
