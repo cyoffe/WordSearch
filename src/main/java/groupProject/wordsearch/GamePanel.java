@@ -83,6 +83,7 @@ public class GamePanel extends JPanel {
 
 			public void actionPerformed(ActionEvent arg0) {
 				listPanel.getList().setModel(new DefaultListModel());
+				listPanel.repaint();
 				wordSearchGUI.revalidate();
 				wordSearchGUI.repaint();
 				wordSearchGUI.getCategoryPanel().setVisible(false);
