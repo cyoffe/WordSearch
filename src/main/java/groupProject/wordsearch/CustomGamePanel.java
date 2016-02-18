@@ -54,7 +54,9 @@ public class CustomGamePanel extends JPanel {
 		mainMenu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				model.clear();
+				list.setModel(model = new DefaultListModel());
+				wordSearchGUI.revalidate();
+				wordSearchGUI.repaint();
 				wordSearchGUI.getCustomPanel().setVisible(false);
 				wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(),
 						"Menu");
@@ -115,17 +117,21 @@ public class CustomGamePanel extends JPanel {
 									notWord = true;
 									break;
 								}
+
 							}
 							if (!notWord) {
 								model.addElement(word.getText());
 								wordList[count++] = word.getText();
 
+
 							}
+
 						}
 
 					}
 
 				}
+
 				word.setText("");
 				word.requestFocus();
 				list.repaint();
