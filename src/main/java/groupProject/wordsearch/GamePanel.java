@@ -229,7 +229,6 @@ public class GamePanel extends JPanel {
 			}
 
 		}
-		// wordChecking = "";
 		cellsClicked.clear();
 		repaint();
 	}
@@ -259,13 +258,7 @@ public class GamePanel extends JPanel {
 			}
 		}
 
-		// int index = listPanel.getList().getNextMatch(wordChecking, 0, null);
-
-		// listPanel.getList().setSelectedValue(
-		// listPanel.getModel().getElementAt(index), true);
-
 		listPanel.getList().setSelectionBackground(null);
-		// --wordsLeft;
 		repaint();
 
 	}

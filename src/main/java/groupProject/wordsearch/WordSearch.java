@@ -124,9 +124,6 @@ public class WordSearch {
 		for (int i = 0; i < 20; i++) {
 			for (int j = 0; j < 20; j++) {
 				cells[i][j] = new Cell(letters[i][j]);
-
-				// cells[i][j].setBorderPainted( false );
-				// cells[i][j].setFocusPainted( false );
 			}
 		}
 		return cells;
