@@ -219,13 +219,11 @@ public class GamePanel extends JPanel {
 		if (words.contains(wordChecking)) {
 			highlightWord(wordChecking);
 			words.remove(wordChecking);
-			System.out.print("words left:" + words.size());
 		} else {
 			wordChecking = flip(wordChecking);
 			if (words.contains(wordChecking)) {
 				highlightWord(wordChecking);
 				words.remove(wordChecking);
-				System.out.print("words left:" + words.size());
 			}
 
 		}
