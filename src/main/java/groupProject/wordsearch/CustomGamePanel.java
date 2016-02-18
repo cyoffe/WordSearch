@@ -37,7 +37,7 @@ public class CustomGamePanel extends JPanel {
 
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
-		setBackground(new Color(25, 102, 25));
+		setBackground(new Color(0, 89, 66));
 
 		JPanel heading = new JPanel();
 		heading.setLayout(new BorderLayout());
@@ -46,11 +46,11 @@ public class CustomGamePanel extends JPanel {
 
 		instructions = new JLabel("Enter 15 Words", JLabel.CENTER);
 		instructions.setFont(new Font("Arial Black", Font.PLAIN, 50));
-		instructions.setForeground(new Color(153, 255, 153));
+		instructions.setForeground(new Color(100, 255, 216));
 
 		mainMenu = new JButton("MAIN MENU");
 		mainMenu.setBorder(BorderFactory.createRaisedBevelBorder());
-		mainMenu.setBackground(new Color(153, 255, 153));
+		mainMenu.setBackground(new Color(100, 255, 216));
 		mainMenu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -68,9 +68,8 @@ public class CustomGamePanel extends JPanel {
 
 		JPanel listPanel = new JPanel();
 		listPanel.setSize(new Dimension(100, 100));
-		// listPanel.setBackground(Color.ORANGE);
 		listPanel.setBorder(new LineBorder(Color.WHITE, 3));
-		listPanel.setBackground(new Color(153, 229, 153));
+		listPanel.setBackground(new Color(246, 255, 252));
 
 		model = new DefaultListModel<String>();
 		wordList = new String[15];
@@ -98,12 +97,12 @@ public class CustomGamePanel extends JPanel {
 		word = new JTextField();
 		word.requestFocus();
 		word.setBorder(null);
-		word.setBackground(new Color(153, 229, 153));
+		word.setBackground(new Color(158, 255, 230));
 
 		addBtn = new JButton("ADD");
 		addBtn.requestFocus();
 		addBtn.setBorder(BorderFactory.createRaisedBevelBorder());
-		addBtn.setBackground(new Color(127, 204, 127));
+		addBtn.setBackground(new Color(193, 255, 239));
 		addBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -135,7 +134,7 @@ public class CustomGamePanel extends JPanel {
 
 		removeBtn = new JButton("REMOVE");
 		removeBtn.setBorder(BorderFactory.createRaisedBevelBorder());
-		removeBtn.setBackground(new Color(127, 204, 127));
+		removeBtn.setBackground(new Color(193, 255, 239));
 		removeBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -155,14 +154,14 @@ public class CustomGamePanel extends JPanel {
 
 		playGame = new JButton("PLAY GAME");
 		playGame.setBorder(BorderFactory.createRaisedBevelBorder());
-		playGame.setBackground(new Color(102, 178, 102));
+		playGame.setBackground(new Color(225, 255, 247));
 		playGame.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
 
 				WordSearch search = new WordSearch(wordList);
 				wordSearchGUI.getGamePanel()
-						.setGame(wordList, search.getGrid());
+				.setGame(wordList, search.getGrid());
 				wordSearchGUI.getCategoryPanel().setVisible(false);
 				wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(),
 						"Game");

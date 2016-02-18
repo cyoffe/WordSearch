@@ -23,7 +23,7 @@ public class FinishedPanel extends JPanel {
 	public FinishedPanel(final WordSearchGUI wordSearchGUI) {
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
-		setBackground(new Color(17, 0, 28));
+		setBackground(new Color(168, 0, 126));
 
 		finishedScrn = new JPanel();
 		finishedScrn.setLayout(new BorderLayout());
@@ -38,12 +38,14 @@ public class FinishedPanel extends JPanel {
 				Graphics2D g2 = (Graphics2D) g;
 
 				g2.setFont(new Font("Minion Pro", Font.BOLD, 60));
-				g2.setColor(new Color(255, 38, 0));
+				g2.setColor(new Color(255, 100, 216));
 				g2.drawString("Congratulations", 150, 120);
 
+				g2.setColor(new Color(255, 158, 230));
 				g2.setFont(new Font("Minion Pro", Font.BOLD, 40));
 				g2.drawString("on finishing the", 215, 200);
 
+				g2.setColor(new Color(255, 193, 239));
 				g2.setFont(new Font("Minion Pro", Font.BOLD, 70));
 				g2.drawString("#1 WORD SEARCH!", 40, 300);
 			}
@@ -61,12 +63,14 @@ public class FinishedPanel extends JPanel {
 				Graphics2D g2 = (Graphics2D) g;
 
 				g2.setFont(new Font("Minion Pro", Font.BOLD, 60));
-				g2.setColor(new Color(255, 38, 0));
-				g2.drawString("Thank You", 290, 120);
+				g2.setColor(new Color(255, 100, 216));
+				g2.drawString("Thank You", 190, 120);
 
+				g2.setColor(new Color(255, 158, 230));
 				g2.setFont(new Font("Minion Pro", Font.BOLD, 40));
 				g2.drawString("for playing the", 215, 200);
 
+				g2.setColor(new Color(255, 193, 239));
 				g2.setFont(new Font("Minion Pro", Font.BOLD, 70));
 				g2.drawString("#1 WORD SEARCH!", 40, 300);
 
@@ -84,6 +88,7 @@ public class FinishedPanel extends JPanel {
 		buttons.setMaximumSize(d);
 
 		JButton playAgain = new JButton("PLAY AGAIN?");
+		playAgain.setBackground(new Color(255, 225, 247));
 		playAgain.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -96,6 +101,7 @@ public class FinishedPanel extends JPanel {
 		});
 
 		JButton exit = new JButton("NEXT TIME");
+		exit.setBackground(new Color(255, 225, 247));
 
 		buttons.add(playAgain);
 		buttons.add(exit);
@@ -116,7 +122,7 @@ public class FinishedPanel extends JPanel {
 				revalidate();
 				repaint();
 
-				timer = new Timer(2500, new ActionListener(){
+				timer = new Timer(3500, new ActionListener(){
 
 					public void actionPerformed(ActionEvent e) {
 						wordSearchGUI.dispose();
