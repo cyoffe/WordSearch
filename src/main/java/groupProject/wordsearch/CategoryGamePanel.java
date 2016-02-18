@@ -16,6 +16,7 @@ import javax.swing.border.LineBorder;
 
 public class CategoryGamePanel extends JPanel implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
 	private JButton cat1, cat2, cat3, cat4, cat5, cat6, cat7, cat8, cat9,
 			cat10;
 	private JLabel instructions;
@@ -27,8 +28,7 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
 		setBackground(new Color(0, 7, 28));
-		
-		
+
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new GridLayout(5, 2, 20, 20));
 		buttons.setBackground(new Color(0, 7, 28));

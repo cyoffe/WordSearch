@@ -1,12 +1,18 @@
 package groupProject.wordsearch;
 
 import java.awt.CardLayout;
+import java.awt.Image;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class WordSearchGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private CardLayout cardLayout;
 	private Menu menuPanel;
 	private JPanel card;

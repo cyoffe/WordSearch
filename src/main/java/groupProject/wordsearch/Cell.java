@@ -7,11 +7,12 @@ import java.awt.Font;
 import javax.swing.JLabel;
 
 public class Cell extends JLabel {
+
+	private static final long serialVersionUID = 1L;
 	private char letter;
 	private boolean highlighted;
 
 	public Cell(Character letter) {
-
 		if (letter == null) {
 			letter = ' ';
 		} else {
@@ -22,7 +23,7 @@ public class Cell extends JLabel {
 		setFont(new Font("Arial", Font.BOLD, 13));
 		setOpaque(true);
 		setBorder(null);
-		setBackground(Color.WHITE);
+		setBackground(null);
 		setHorizontalAlignment(JLabel.CENTER);
 		setVerticalAlignment(JLabel.CENTER);
 
@@ -47,7 +48,7 @@ public class Cell extends JLabel {
 	}
 
 	public void highlight() {
-		this.setBackground(Color.YELLOW);
+		setBackground(new Color(196, 138, 231));
 		this.highlighted = true;
 
 	}

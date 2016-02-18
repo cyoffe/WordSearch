@@ -2,7 +2,6 @@ package groupProject.wordsearch;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -10,25 +9,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
 
 import javax.swing.BorderFactory;
-import javax.swing.DefaultListCellRenderer;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class GamePanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 
 	private JLabel instructions;
 
@@ -45,15 +39,16 @@ public class GamePanel extends JPanel {
 	public GamePanel(final WordSearchGUI wordSearchGUI) {
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
-		//new BufferedImage(800, 600, BufferedImage.TYPE_INT_ARGB);
+		setBackground(new Color(17, 0, 28));
 
 		cellsClicked = new Stack<Cell>();
 		category = "Word Search";
 		gridPanel = new JPanel();
 		gridPanel.setLayout(new BorderLayout());
-		gridPanel.setBorder(new LineBorder(Color.BLUE, 3));
-		gridPanel.setBackground(Color.WHITE);
+		gridPanel.setBorder(new LineBorder(Color.WHITE, 3));
+
 		grid = new JPanel();
+		grid.setBackground(new Color(232, 193, 255));
 		grid.setLayout(new GridLayout(20, 20));
 		Dimension di = new Dimension(3000, 3000);
 		grid.setMinimumSize(di);
@@ -65,14 +60,16 @@ public class GamePanel extends JPanel {
 
 		heading = new JPanel();
 		heading.setLayout(new BorderLayout());
-		heading.setBorder(new LineBorder(Color.BLACK));
+		heading.setBorder(new LineBorder(Color.WHITE));
+		heading.setBackground(new Color(17, 0, 28));
 
 		instructions = new JLabel(category.toUpperCase(), JLabel.CENTER);
 		instructions.setFont(new Font("Arial Black", Font.PLAIN, 50));
+		instructions.setForeground(new Color(197, 100, 255));
 
 		mainMenu = new JButton("MAIN MENU");
 		mainMenu.setBorder(BorderFactory.createRaisedBevelBorder());
-		mainMenu.setBackground(Color.RED);
+		mainMenu.setBackground(new Color(197, 100, 255));
 		mainMenu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -128,17 +125,14 @@ public class GamePanel extends JPanel {
 				}
 
 				public void mouseClicked(MouseEvent e) {
-					// TODO Auto-generated method stub
 
 				}
 
 				public void mouseEntered(MouseEvent e) {
-					// TODO Auto-generated method stub
 
 				}
 
 				public void mouseExited(MouseEvent e) {
-					// TODO Auto-generated method stub
 
 				}
 
@@ -150,8 +144,6 @@ public class GamePanel extends JPanel {
 	// checks if the letters selected are a word in the list
 	public void checkWord() {
 		lettersSelected = new StringBuilder();
-		int distance;
-		char letter;
 
 		// determine if word is horizontal, vertical, or diagonal
 		// and add letters to StringBuffer
@@ -164,7 +156,7 @@ public class GamePanel extends JPanel {
 				repaint();
 
 			}
-			System.out.println(lettersSelected.toString());
+
 		}
 		// vertical word upwards
 		else if (startX == endX && startY > endY) {
@@ -173,7 +165,7 @@ public class GamePanel extends JPanel {
 				cellsClicked.push(cells[i][startX]);
 
 			}
-			System.out.println(lettersSelected.toString());
+
 		}
 		// horizontal word left->right
 		else if (startY == endY && startX < endX) {
@@ -182,7 +174,7 @@ public class GamePanel extends JPanel {
 				cellsClicked.push(cells[startY][i]);
 
 			}
-			System.out.println(lettersSelected.toString());
+
 		}
 		// horizontal word right->left
 		else if (startY == endY && startX > endX) {
@@ -191,7 +183,7 @@ public class GamePanel extends JPanel {
 				cellsClicked.push(cells[startY][i]);
 
 			}
-			System.out.println(lettersSelected.toString());
+
 		}
 		// \ diagonal upper left to lower right
 		else if (endX - startX == endY - startY && startX < endX) {
@@ -201,7 +193,7 @@ public class GamePanel extends JPanel {
 				cellsClicked.push(cells[startY + i][startX + i]);
 
 			}
-			System.out.println(lettersSelected.toString());
+
 		}
 		// \ diagonal lower right to upper left
 		else if (endX - startX == endY - startY && startX > endX) {
@@ -211,17 +203,9 @@ public class GamePanel extends JPanel {
 				cellsClicked.push(cells[startY - i][startX - i]);
 
 			}
-			System.out.println(lettersSelected.toString());
+
 		}
 
-		/*
-		 * // check if it's a word for (int i = 0; i < words.length; i++) { if
-		 * (lettersSelected.toString().equalsIgnoreCase(words[i])) {
-		 * System.out.println(lettersSelected.toString());
-		 * lettersSelected.setLength(0); // clears stringbuffer
-		 * 
-		 * return i; } }
-		 */
 		checkWordList(lettersSelected.toString());
 		lettersSelected.setLength(0); // clears stringbuffer
 	}
@@ -230,14 +214,12 @@ public class GamePanel extends JPanel {
 		if (words.containsKey(wordChecking.toLowerCase())
 				&& !words.get(wordChecking.toLowerCase())) {
 			highlightWord(wordChecking);
-			wordsLeft--;
 
 		} else {
 			wordChecking = flip(wordChecking);
 			if (words.containsKey(wordChecking.toLowerCase())
 					&& !words.get(wordChecking.toLowerCase())) {
 				highlightWord(wordChecking);
-				wordsLeft--;
 
 			}
 
@@ -247,7 +229,7 @@ public class GamePanel extends JPanel {
 		repaint();
 
 		// check if finished game
-		// checkIfFinished();
+		checkIfFinished();
 
 	}
 
@@ -270,7 +252,7 @@ public class GamePanel extends JPanel {
 				listPanel.getModel().getElementAt(index), true);
 
 		listPanel.getList().setSelectionBackground(null);
-
+		wordsLeft--;
 		repaint();
 
 	}
@@ -282,8 +264,8 @@ public class GamePanel extends JPanel {
 		}
 		return reverse.toString();
 	}
-	
-	public void setCategory(String name){
+
+	public void setCategory(String name) {
 		category = name;
 		repaint();
 	}

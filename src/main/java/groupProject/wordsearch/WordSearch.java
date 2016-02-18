@@ -95,7 +95,7 @@ public class WordSearch {
 					// if the letter cannot go here, the word cannot go here
 					// and need to take away all letters added from this word
 					else {
-						for (int k = letterNum; letterNum > 0; letterNum--) {
+						for (; letterNum > 0; letterNum--) {
 							if (direction == 0) {
 								col--;
 							} else if (direction == 1) {

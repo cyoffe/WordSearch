@@ -2,26 +2,27 @@ package groupProject.wordsearch;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListModel;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListCellRenderer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
 public class CustomGamePanel extends JPanel {
+
+	private static final long serialVersionUID = 1L;
 	private JList<String> list;
 	private JTextField word;
 	private JLabel instructions;
@@ -36,19 +37,20 @@ public class CustomGamePanel extends JPanel {
 
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
+		setBackground(new Color(25, 102, 25));
 
 		JPanel heading = new JPanel();
 		heading.setLayout(new BorderLayout());
 		heading.setBackground(getBackground());
-		heading.setBorder(new LineBorder(Color.BLACK));
-		
+		heading.setBorder(new LineBorder(Color.WHITE));
+
 		instructions = new JLabel("Enter 15 Words", JLabel.CENTER);
 		instructions.setFont(new Font("Arial Black", Font.PLAIN, 50));
-		instructions.setForeground(Color.ORANGE);
+		instructions.setForeground(new Color(153, 255, 153));
 
 		mainMenu = new JButton("MAIN MENU");
 		mainMenu.setBorder(BorderFactory.createRaisedBevelBorder());
-		mainMenu.setBackground(Color.RED);
+		mainMenu.setBackground(new Color(153, 255, 153));
 		mainMenu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -67,14 +69,27 @@ public class CustomGamePanel extends JPanel {
 		JPanel listPanel = new JPanel();
 		listPanel.setSize(new Dimension(100, 100));
 		// listPanel.setBackground(Color.ORANGE);
-		listPanel.setBorder(new LineBorder(Color.BLUE, 3));
-		// listPanel.setBackground(getBackground());
+		listPanel.setBorder(new LineBorder(Color.WHITE, 3));
+		listPanel.setBackground(new Color(153, 229, 153));
 
 		model = new DefaultListModel<String>();
 		wordList = new String[15];
+
 		list = new JList<String>(model);
-		list.setFont(new Font("Arial", Font.BOLD, 18));
-		list.setBackground(null);
+		list.setBackground(listPanel.getBackground());
+		list.setCellRenderer(new ListCellRenderer<String>() {
+
+			public Component getListCellRendererComponent(JList list,
+					String value, int index, boolean isSelected,
+					boolean hasFocus) {
+				JLabel label = new JLabel(value);
+				label.setHorizontalAlignment(JLabel.CENTER);
+				label.setVerticalAlignment(JLabel.CENTER);
+				label.setFont(new Font("Arial", Font.BOLD, 18));
+				return label;
+			}
+
+		});
 
 		listPanel.add(list);
 
@@ -82,11 +97,13 @@ public class CustomGamePanel extends JPanel {
 		words.setLayout(new GridLayout(3, 1, 5, 5));
 		word = new JTextField();
 		word.requestFocus();
+		word.setBorder(null);
+		word.setBackground(new Color(153, 229, 153));
 
 		addBtn = new JButton("ADD");
 		addBtn.requestFocus();
 		addBtn.setBorder(BorderFactory.createRaisedBevelBorder());
-		addBtn.setBackground(Color.ORANGE);
+		addBtn.setBackground(new Color(127, 204, 127));
 		addBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -118,7 +135,7 @@ public class CustomGamePanel extends JPanel {
 
 		removeBtn = new JButton("REMOVE");
 		removeBtn.setBorder(BorderFactory.createRaisedBevelBorder());
-		removeBtn.setBackground(Color.ORANGE);
+		removeBtn.setBackground(new Color(127, 204, 127));
 		removeBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
@@ -138,7 +155,7 @@ public class CustomGamePanel extends JPanel {
 
 		playGame = new JButton("PLAY GAME");
 		playGame.setBorder(BorderFactory.createRaisedBevelBorder());
-		playGame.setBackground(Color.ORANGE);
+		playGame.setBackground(new Color(102, 178, 102));
 		playGame.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
