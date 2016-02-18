@@ -43,7 +43,7 @@ public class WordSearch {
 			tries = 0;
 
 			// while this word is not placed, try many times to add it
-			while (!placed && tries < 400) {
+			while (!placed && tries < 50) {
 
 				// ensure that backup[][] and letters[][] are the same
 				for (int k = 0; k < 20; k++) {
@@ -92,7 +92,7 @@ public class WordSearch {
 
 						if (lettersPlaced == this.words[i].length()) {
 							placed = true;
-							//System.out.println(this.words[i]);
+							
 						}
 					}
 
@@ -112,15 +112,11 @@ public class WordSearch {
 							letters[row][col] = backup[row][col];
 
 						}
+						lettersPlaced = 0;
 						break;
 
 					}
 				}
-
-				// how deal if word doesn't fit anywhere?
-				// right now, program will just not include it
-				// if(--i > 0) return true;
-
 				tries++;
 			}// end while not placed
 
@@ -143,8 +139,8 @@ public class WordSearch {
 
 	private String flip(String word) {
 		StringBuilder reverse = new StringBuilder();
-		for (int i = word.length() - 1; i >= 0; i--) {
-			reverse.append(word.charAt(i));
+		for (int num = word.length() - 1; num >= 0; num--) {
+			reverse.append(word.charAt(num));
 		}
 		return reverse.toString();
 	}

@@ -26,7 +26,7 @@ public class TestApi extends Thread{
 			response = Unirest
 					.get("https://twinword-word-associations-v1.p.mashape.com/associations/?entry=" + category)
 					.header("X-Mashape-Key",
-							"ijMTkO7tLDmshXQd8GckF53vZu0Yp17GXs8jsnu99o7YmrQMMu")
+							"lpakBIxMs9mshIh7tb98Xb1iRzDOp1iwtzyjsnqvjWeOEpAL4M")
 					.asJson();
 		} catch (UnirestException e) {
 			e.printStackTrace();
