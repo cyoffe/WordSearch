@@ -50,7 +50,6 @@ public class Menu extends JPanel implements ActionListener {
 		menu.setBackground(new Color(255, 211, 204));
 		menu.setLayout(new BorderLayout(10, 10));
 		menu.add(buttons, BorderLayout.EAST);
-		// menu.add(title, BorderLayout.CENTER);
 		menu.add(t, BorderLayout.CENTER);
 
 		add(menu, BorderLayout.CENTER);

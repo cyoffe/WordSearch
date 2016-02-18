@@ -140,7 +140,6 @@ public class CustomGamePanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (model.size() > 0) {
 					int index = list.getSelectedIndex();
-					// list.remove(index);
 					model.remove(index);
 					for (int i = index; i < wordList.length - 1; i++) {
 						wordList[i] = wordList[i + 1];

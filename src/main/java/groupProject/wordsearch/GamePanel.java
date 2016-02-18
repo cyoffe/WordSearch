@@ -225,17 +225,14 @@ public class GamePanel extends JPanel {
 		if (words.contains(wordChecking)) {
 			highlightWord(wordChecking);
 			words.remove(wordChecking);
-			System.out.print("words left:" + words.size());
 		} else {
 			wordChecking = flip(wordChecking);
 			if (words.contains(wordChecking)) {
 				highlightWord(wordChecking);
 				words.remove(wordChecking);
-				System.out.print("words left:" + words.size());
 			}
 
 		}
-		// wordChecking = "";
 		cellsClicked.clear();
 		repaint();
 	}
@@ -265,13 +262,7 @@ public class GamePanel extends JPanel {
 			}
 		}
 
-		// int index = listPanel.getList().getNextMatch(wordChecking, 0, null);
-
-		// listPanel.getList().setSelectedValue(
-		// listPanel.getModel().getElementAt(index), true);
-
 		listPanel.getList().setSelectionBackground(null);
-		// --wordsLeft;
 		repaint();
 
 	}
