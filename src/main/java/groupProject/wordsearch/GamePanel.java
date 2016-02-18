@@ -207,7 +207,7 @@ public class GamePanel extends JPanel {
 
 		}
 
-		checkWordList(lettersSelected.toString());
+		checkWordList(lettersSelected.toString().toLowerCase());
 		lettersSelected.setLength(0); // clears stringbuffer
 
 		// check if finished game
@@ -216,17 +216,20 @@ public class GamePanel extends JPanel {
 	}
 
 	public void checkWordList(String wordChecking) {
-		if (words.contains(wordChecking.toLowerCase())
-				|| words.contains(flip(wordChecking).toLowerCase())) {
+		if (words.contains(wordChecking)) {
 			highlightWord(wordChecking);
-
-
-			words.remove(wordChecking.toLowerCase());
-			System.out.println("words left:" + words.size());
-			System.out.print(words.toString());
+			words.remove(wordChecking);
+			System.out.print("words left:" + words.size());
+		} else {
+			wordChecking = flip(wordChecking);
+			if (words.contains(wordChecking)) {
+				highlightWord(wordChecking);
+				words.remove(wordChecking);
+				System.out.print("words left:" + words.size());
+			}
 
 		}
-		wordChecking = "";
+		// wordChecking = "";
 		cellsClicked.clear();
 		repaint();
 	}
@@ -252,6 +255,7 @@ public class GamePanel extends JPanel {
 				listPanel.getList().setSelectedValue(
 						listPanel.getModel().getElementAt(index), true);
 				break;
+
 			}
 		}
 
