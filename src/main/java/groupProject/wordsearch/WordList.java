@@ -18,6 +18,7 @@ public class WordList extends JPanel {
 	private JList<String> list;
 
 	public WordList(GamePanel gamePanel) {
+		setLayout(new BorderLayout());
 		setBorder(new LineBorder(Color.BLUE, 3));
 
 		Dimension dimension = new Dimension(150, gamePanel.getHeight());
@@ -31,7 +32,7 @@ public class WordList extends JPanel {
 		list.setBackground(null);
 		list.setEnabled(false);
 
-		add(list);
+		add(list, BorderLayout.CENTER);
 	}
 
 	public DefaultListModel<String> getModel() {

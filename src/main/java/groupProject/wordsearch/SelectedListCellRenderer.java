@@ -22,26 +22,23 @@ public class SelectedListCellRenderer extends DefaultListCellRenderer {
 	@Override
 	public Component getListCellRendererComponent(JList list, Object value,
 			int index, boolean isSelected, boolean cellHasFocus) {
-		//Component c = super.getListCellRendererComponent(list, value, index,
-		//		isSelected, cellHasFocus);
+
 		JLabel word = new JLabel(value.toString().toUpperCase());
 		word.setHorizontalAlignment(JLabel.CENTER);
 		word.setVerticalAlignment(JLabel.CENTER);
 		word.setFont(new Font("Arial", Font.BOLD, 13));
-		word.setBorder(new EmptyBorder(4,0,4,0));
-		
+		word.setBorder(new EmptyBorder(4, 0, 4, 0));
+
 		if (listItemBackground.contains(value)) {
 			word.setForeground(Color.LIGHT_GRAY);
 			word.setBackground(null);
-			
 
 		} else {
 			if (isSelected) {
 				word.setForeground(Color.LIGHT_GRAY);
 				word.setBackground(null);
 				listItemBackground.add(value);
-			}
-			else{
+			} else {
 				word.setForeground(Color.BLACK);
 			}
 		}

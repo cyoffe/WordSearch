@@ -26,8 +26,12 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 	public CategoryGamePanel(final WordSearchGUI wordSearchGUI) {
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
+		setBackground(new Color(0, 7, 28));
+		
+		
 		JPanel buttons = new JPanel();
 		buttons.setLayout(new GridLayout(5, 2, 20, 20));
+		buttons.setBackground(new Color(0, 7, 28));
 
 		this.wordSearchGUI = wordSearchGUI;
 
@@ -47,7 +51,7 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		cat5 = new JButton("NUMBERS");
 		cat5.setBorder(BorderFactory.createRaisedBevelBorder());
 		cat5.setBackground(new Color(193, 209, 255));
-		cat6 = new JButton("TECHNOLOGY COMPUTERS");
+		cat6 = new JButton("TECHNOLOGY");
 		cat6.setBorder(BorderFactory.createRaisedBevelBorder());
 		cat6.setBackground(new Color(193, 209, 255));
 		cat7 = new JButton("SPORTS");
@@ -86,8 +90,9 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		buttons.add(cat10);
 
 		JPanel heading = new JPanel();
+		heading.setBackground(new Color(0, 7, 28));
 		heading.setLayout(new BorderLayout());
-		heading.setBorder(new LineBorder(Color.BLACK));
+		heading.setBorder(new LineBorder(Color.WHITE));
 
 		instructions = new JLabel("Choose a Category", JLabel.CENTER);
 		instructions.setFont(new Font("Arial Black", Font.PLAIN, 50));
