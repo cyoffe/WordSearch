@@ -19,6 +19,7 @@ public class ApiThread extends Thread {
 		this.wordSearchGUI = gui;
 	}
 
+	@Override
 	public void run() {
 		HttpResponse<JsonNode> response = null;
 		try {
@@ -26,9 +27,9 @@ public class ApiThread extends Thread {
 			response = Unirest
 					.get("https://twinword-word-associations-v1.p.mashape.com/associations/?entry="
 							+ category)
-					.header("X-Mashape-Key",
-							"ijMTkO7tLDmshXQd8GckF53vZu0Yp17GXs8jsnu99o7YmrQMMu")
-					.asJson();
+							.header("X-Mashape-Key",
+									"ijMTkO7tLDmshXQd8GckF53vZu0Yp17GXs8jsnu99o7YmrQMMu")
+									.asJson();
 		} catch (UnirestException e) {
 			e.printStackTrace();
 		}
@@ -38,7 +39,6 @@ public class ApiThread extends Thread {
 		words = new String[15];
 		for (int i = 0; i < 15; i++) {
 			words[i] = array.getString(i).toString();
-			System.out.println(words[i]);
 
 		}
 		search = new WordSearch(words);

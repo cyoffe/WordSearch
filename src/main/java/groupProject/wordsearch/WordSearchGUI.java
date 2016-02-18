@@ -20,6 +20,7 @@ public class WordSearchGUI extends JFrame {
 	private CategoryGamePanel categoryPanel;
 	private GamePanel gamePanel;
 	private ImageIcon img;
+	private FinishedPanel finishedPanel;
 
 	public WordSearchGUI() {
 		setTitle("Word Search");
@@ -27,10 +28,11 @@ public class WordSearchGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocation(300, 100);
 		setResizable(false);
-		
+
 		img = new ImageIcon("button images/icon2.jpg");
 		Image imgBig = img.getImage();
-		imgBig = imgBig.getScaledInstance(160, 160, java.awt.Image.SCALE_SMOOTH);
+		imgBig = imgBig
+				.getScaledInstance(160, 160, java.awt.Image.SCALE_SMOOTH);
 		setIconImage(imgBig);
 
 		JPanel container = (JPanel) getContentPane();
@@ -43,11 +45,13 @@ public class WordSearchGUI extends JFrame {
 		customPanel = new CustomGamePanel(this);
 		categoryPanel = new CategoryGamePanel(this);
 		gamePanel = new GamePanel(this);
+		finishedPanel = new FinishedPanel(this);
 
 		card.add("Menu", menuPanel);
 		card.add("Custom Puzzle", customPanel);
 		card.add("Category Puzzle", categoryPanel);
 		card.add("Game", gamePanel);
+		card.add("Finished", finishedPanel);
 
 		container.add(card);
 		cardLayout.show(card, "Menu");
