@@ -135,6 +135,7 @@ public class CustomGamePanel extends JPanel {
 				word.setText("");
 				word.requestFocus();
 				list.repaint();
+				notWord = false;
 
 			}
 
