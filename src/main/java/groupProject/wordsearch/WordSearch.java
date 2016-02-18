@@ -38,7 +38,7 @@ public class WordSearch {
 			tries = 0;
 
 			// while this word is not placed, try many times to add it
-			while (!placed && tries < 400) {
+			while (!placed && tries < 50) {
 
 				// ensure that backup[][] and letters[][] are the same
 				for (int k = 0; k < 20; k++) {

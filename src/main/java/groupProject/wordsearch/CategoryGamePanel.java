@@ -3,22 +3,15 @@ package groupProject.wordsearch;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
 public class CategoryGamePanel extends JPanel implements ActionListener {
@@ -124,14 +117,10 @@ public class CategoryGamePanel extends JPanel implements ActionListener {
 		JButton source = (JButton) e.getSource();
 		String category = source.getText();
 
-		ApiThread api = new ApiThread(category);
-		String[] words = api.getApi();
-		WordSearch search = new WordSearch(words);
+		ApiThread api = new ApiThread(category, wordSearchGUI);
+		api.start();		
 		
-		wordSearchGUI.getGamePanel().setGame(words, search.getGrid());
-		wordSearchGUI.getGamePanel().setCategory(category);
-		wordSearchGUI.getCategoryPanel().setVisible(false);
-		wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(), "Game");
+		
 	}
 
 	public WordSearch getWordSearch() {

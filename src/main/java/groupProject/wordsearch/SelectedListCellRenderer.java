@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.border.EmptyBorder;
 
 public class SelectedListCellRenderer extends DefaultListCellRenderer {
 
@@ -22,7 +24,12 @@ public class SelectedListCellRenderer extends DefaultListCellRenderer {
 			int index, boolean isSelected, boolean cellHasFocus) {
 		//Component c = super.getListCellRendererComponent(list, value, index,
 		//		isSelected, cellHasFocus);
-		JLabel word = new JLabel(value.toString());
+		JLabel word = new JLabel(value.toString().toUpperCase());
+		word.setHorizontalAlignment(JLabel.CENTER);
+		word.setVerticalAlignment(JLabel.CENTER);
+		word.setFont(new Font("Arial", Font.BOLD, 13));
+		word.setBorder(new EmptyBorder(4,0,4,0));
+		
 		if (listItemBackground.contains(value)) {
 			word.setForeground(Color.LIGHT_GRAY);
 			word.setBackground(null);

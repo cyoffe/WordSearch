@@ -3,15 +3,7 @@ package groupProject.wordsearch;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
-import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 public class Cell extends JLabel {

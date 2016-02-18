@@ -14,12 +14,16 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 public class ApiThread extends Thread {
 
 	private String category;
+	private String[] words;
+	private WordSearch search;
+	private WordSearchGUI wordSearchGUI;
 
-	public ApiThread(String category) {
+	public ApiThread(String category, WordSearchGUI gui) {
 		this.category = category;
+		this.wordSearchGUI = gui;
 	}
 
-	public String[] getApi() {
+	public void run() {
 		HttpResponse<JsonNode> response = null;
 		try {
 
@@ -35,13 +39,26 @@ public class ApiThread extends Thread {
 
 		JSONArray array = response.getBody().getObject()
 				.getJSONArray("associations_array");
-		String[] words = new String[15];
+		words = new String[15];
 		for (int i = 0; i < 15; i++) {
 			words[i] = array.getString(i).toString();
 			System.out.println(words[i]);
 
 		}
+		search = new WordSearch(words);
+		wordSearchGUI.getGamePanel().setGame(words, search.getGrid());
+		wordSearchGUI.getGamePanel().setCategory(category);
+		wordSearchGUI.getCategoryPanel().setVisible(false);
+		wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(), "Game");
+	}
+	
+	public String[] getWords(){
 		return words;
+	}
+
+	public WordSearch getWordSearch() {
+		// TODO Auto-generated method stub
+		return search;
 	}
 
 	/*

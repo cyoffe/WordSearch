@@ -18,24 +18,20 @@ public class WordList extends JPanel {
 	private JList<String> list;
 
 	public WordList(GamePanel gamePanel) {
-		setLayout(new BorderLayout());
 		setBorder(new LineBorder(Color.BLUE, 3));
 
 		Dimension dimension = new Dimension(150, gamePanel.getHeight());
 		setMinimumSize(dimension);
 		setPreferredSize(dimension);
 		setMaximumSize(dimension);
-		
-		
+
 		model = new DefaultListModel<String>();
 		list = new JList<String>(model);
 		list.setCellRenderer(new SelectedListCellRenderer());
-		//list.setFont(new Font("Arial Black", Font.PLAIN, 20));
 		list.setBackground(null);
 		list.setEnabled(false);
-		
-		
-		add(list, BorderLayout.CENTER);
+
+		add(list);
 	}
 
 	public DefaultListModel<String> getModel() {

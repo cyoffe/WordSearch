@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Stack;
 
+import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -51,6 +52,7 @@ public class GamePanel extends JPanel {
 		gridPanel = new JPanel();
 		gridPanel.setLayout(new BorderLayout());
 		gridPanel.setBorder(new LineBorder(Color.BLUE, 3));
+		gridPanel.setBackground(Color.WHITE);
 		grid = new JPanel();
 		grid.setLayout(new GridLayout(20, 20));
 		Dimension di = new Dimension(3000, 3000);
@@ -69,6 +71,8 @@ public class GamePanel extends JPanel {
 		instructions.setFont(new Font("Arial Black", Font.PLAIN, 50));
 
 		mainMenu = new JButton("MAIN MENU");
+		mainMenu.setBorder(BorderFactory.createRaisedBevelBorder());
+		mainMenu.setBackground(Color.RED);
 		mainMenu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {

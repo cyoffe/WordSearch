@@ -30,7 +30,7 @@ public class CustomGamePanel extends JPanel {
 	private String[] wordList;
 	private int count;
 	private JButton mainMenu;
-	private ImageIcon image;
+	private boolean notWord = false;
 
 	public CustomGamePanel(final WordSearchGUI wordSearchGUI) {
 
@@ -40,14 +40,19 @@ public class CustomGamePanel extends JPanel {
 		JPanel heading = new JPanel();
 		heading.setLayout(new BorderLayout());
 		heading.setBackground(getBackground());
-
+		heading.setBorder(new LineBorder(Color.BLACK));
+		
 		instructions = new JLabel("Enter 15 Words", JLabel.CENTER);
 		instructions.setFont(new Font("Arial Black", Font.PLAIN, 50));
+		instructions.setForeground(Color.ORANGE);
 
 		mainMenu = new JButton("MAIN MENU");
+		mainMenu.setBorder(BorderFactory.createRaisedBevelBorder());
+		mainMenu.setBackground(Color.RED);
 		mainMenu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
+				model.clear();
 				wordSearchGUI.getCustomPanel().setVisible(false);
 				wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(),
 						"Menu");
@@ -68,7 +73,7 @@ public class CustomGamePanel extends JPanel {
 		model = new DefaultListModel<String>();
 		wordList = new String[15];
 		list = new JList<String>(model);
-		list.setFont(new Font("Arial", Font.BOLD, 20));
+		list.setFont(new Font("Arial", Font.BOLD, 18));
 		list.setBackground(null);
 
 		listPanel.add(list);
@@ -80,33 +85,51 @@ public class CustomGamePanel extends JPanel {
 
 		addBtn = new JButton("ADD");
 		addBtn.requestFocus();
+		addBtn.setBorder(BorderFactory.createRaisedBevelBorder());
+		addBtn.setBackground(Color.ORANGE);
 		addBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				if (model.size() < 15) {
-					model.addElement(word.getText());
-					wordList[count++] = word.getText();
-					word.setText("");
-					word.requestFocus();
-					list.repaint();
+					if (!word.getText().trim().equals("")) {
+						char[] letters = word.getText().toCharArray();
+						for (Character c : letters) {
+							if (!Character.isLetter(c)) {
+								notWord = true;
+								break;
+							}
+						}
+						if (!notWord) {
+							model.addElement(word.getText());
+							wordList[count++] = word.getText();
 
-				} else {
-					word.setText("");
+						}
+
+					}
 
 				}
+				word.setText("");
+				word.requestFocus();
+				list.repaint();
 
 			}
 
 		});
 
 		removeBtn = new JButton("REMOVE");
+		removeBtn.setBorder(BorderFactory.createRaisedBevelBorder());
+		removeBtn.setBackground(Color.ORANGE);
 		removeBtn.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 				if (model.size() > 0) {
 					int index = list.getSelectedIndex();
-					//list.remove(index);
+					// list.remove(index);
 					model.remove(index);
+					for (int i = index; i < wordList.length - 1; i++) {
+						wordList[i] = wordList[i + 1];
+					}
+					count--;
 					list.repaint();
 				}
 			}
@@ -114,13 +137,15 @@ public class CustomGamePanel extends JPanel {
 		});
 
 		playGame = new JButton("PLAY GAME");
+		playGame.setBorder(BorderFactory.createRaisedBevelBorder());
+		playGame.setBackground(Color.ORANGE);
 		playGame.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
 
 				WordSearch search = new WordSearch(wordList);
-				wordSearchGUI.getGamePanel().setGame(wordList,
-						search.getGrid());
+				wordSearchGUI.getGamePanel()
+						.setGame(wordList, search.getGrid());
 				wordSearchGUI.getCategoryPanel().setVisible(false);
 				wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(),
 						"Game");
