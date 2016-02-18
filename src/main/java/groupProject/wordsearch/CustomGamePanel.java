@@ -108,17 +108,19 @@ public class CustomGamePanel extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				if (model.size() < 15) {
 					if (!word.getText().trim().equals("")) {
-						char[] letters = word.getText().toCharArray();
-						for (Character c : letters) {
-							if (!Character.isLetter(c)) {
-								notWord = true;
-								break;
+						if (!model.contains(word.getText())) {
+							char[] letters = word.getText().toCharArray();
+							for (Character c : letters) {
+								if (!Character.isLetter(c)) {
+									notWord = true;
+									break;
+								}
 							}
-						}
-						if (!notWord) {
-							model.addElement(word.getText());
-							wordList[count++] = word.getText();
+							if (!notWord) {
+								model.addElement(word.getText());
+								wordList[count++] = word.getText();
 
+							}
 						}
 
 					}
