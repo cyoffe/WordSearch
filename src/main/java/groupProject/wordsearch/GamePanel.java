@@ -9,13 +9,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Stack;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -28,19 +27,22 @@ public class GamePanel extends JPanel {
 
 	private JPanel heading, gridPanel, grid;
 	private Cell[][] cells;
-	private HashMap<String, Boolean> words;
+	private ArrayList<String> words;
 	private Stack<Cell> cellsClicked;
 	private WordList listPanel;
 	private JButton mainMenu;
 	private StringBuilder lettersSelected;
-	private int startX, startY, endX, endY, wordsLeft;
+	private int startX, startY, endX, endY;
 	private String category;
+
+	private WordSearchGUI wordSearchGUI;
 
 	public GamePanel(final WordSearchGUI wordSearchGUI) {
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
 		setBackground(new Color(17, 0, 28));
 
+		this.wordSearchGUI = wordSearchGUI;
 		cellsClicked = new Stack<Cell>();
 		category = "Word Search";
 		gridPanel = new JPanel();
@@ -91,13 +93,12 @@ public class GamePanel extends JPanel {
 	}
 
 	public void setGame(String[] words, Cell[][] board) {
-		this.words = new HashMap<String, Boolean>();
+		this.words = new ArrayList<String>();
 		grid.removeAll();
-		wordsLeft = words.length;
 		listPanel.getModel().clear();
 		for (String w : words) {
 			listPanel.getModel().addElement(w);
-			this.words.put(w, false);
+			this.words.add(w);
 		}
 
 		cells = board;
@@ -208,34 +209,32 @@ public class GamePanel extends JPanel {
 
 		checkWordList(lettersSelected.toString());
 		lettersSelected.setLength(0); // clears stringbuffer
-	}
-
-	public void checkWordList(String wordChecking) {
-		if (words.containsKey(wordChecking.toLowerCase())
-				&& !words.get(wordChecking.toLowerCase())) {
-			highlightWord(wordChecking);
-
-		} else {
-			wordChecking = flip(wordChecking);
-			if (words.containsKey(wordChecking.toLowerCase())
-					&& !words.get(wordChecking.toLowerCase())) {
-				highlightWord(wordChecking);
-
-			}
-
-		}
-		wordChecking = "";
-		cellsClicked.clear();
-		repaint();
 
 		// check if finished game
 		checkIfFinished();
 
 	}
 
+	public void checkWordList(String wordChecking) {
+		if (words.contains(wordChecking.toLowerCase())
+				|| words.contains(flip(wordChecking).toLowerCase())) {
+			highlightWord(wordChecking);
+
+
+			words.remove(wordChecking.toLowerCase());
+			System.out.println("words left:" + words.size());
+			System.out.print(words.toString());
+
+		}
+		wordChecking = "";
+		cellsClicked.clear();
+		repaint();
+	}
+
 	private void checkIfFinished() {
-		if (wordsLeft == 0) {
-			JOptionPane.showMessageDialog(this, "Winner!");
+		if (words.size() == 0) {
+			wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(),
+					"Finished");
 		}
 
 	}
@@ -246,13 +245,23 @@ public class GamePanel extends JPanel {
 			c.highlight();
 		}
 
-		int index = listPanel.getList().getNextMatch(wordChecking, 0, null);
+		for (int index = 0; index < listPanel.getList().getModel().getSize(); index++) {
+			String element = listPanel.getList().getModel().getElementAt(index);
+			if (element.equalsIgnoreCase(wordChecking)
+					|| element.equalsIgnoreCase(flip(wordChecking))) {
+				listPanel.getList().setSelectedValue(
+						listPanel.getModel().getElementAt(index), true);
+				break;
+			}
+		}
 
-		listPanel.getList().setSelectedValue(
-				listPanel.getModel().getElementAt(index), true);
+		// int index = listPanel.getList().getNextMatch(wordChecking, 0, null);
+
+		// listPanel.getList().setSelectedValue(
+		// listPanel.getModel().getElementAt(index), true);
 
 		listPanel.getList().setSelectionBackground(null);
-		wordsLeft--;
+		// --wordsLeft;
 		repaint();
 
 	}
