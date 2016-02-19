@@ -38,7 +38,7 @@ public class CustomGamePanel extends JPanel {
 		setLayout(new BorderLayout(30, 30));
 		setBorder(new EmptyBorder(50, 50, 50, 50));
 		setBackground(new Color(0, 89, 66));
-
+		count = 0;
 		JPanel heading = new JPanel();
 		heading.setLayout(new BorderLayout());
 		heading.setBackground(getBackground());
@@ -54,7 +54,9 @@ public class CustomGamePanel extends JPanel {
 		mainMenu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				list.setModel(model = new DefaultListModel());
+				list.setModel(model = new DefaultListModel<String>());
+				word.setText("");
+				count = 0;
 				wordSearchGUI.revalidate();
 				wordSearchGUI.repaint();
 				wordSearchGUI.getCustomPanel().setVisible(false);
@@ -123,7 +125,6 @@ public class CustomGamePanel extends JPanel {
 								model.addElement(word.getText());
 								wordList[count++] = word.getText();
 
-
 							}
 
 						}
@@ -190,6 +191,14 @@ public class CustomGamePanel extends JPanel {
 		add(words, BorderLayout.EAST);
 		add(listPanel, BorderLayout.CENTER);
 		add(heading, BorderLayout.NORTH);
+
+	}
+
+	public void setModel(DefaultListModel<String> m) {
+		model = m;
+		list.setModel(model);
+		word.setText("");
+		list.repaint();
 
 	}
 }

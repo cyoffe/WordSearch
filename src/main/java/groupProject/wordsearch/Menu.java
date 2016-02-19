@@ -24,9 +24,9 @@ public class Menu extends JPanel implements ActionListener {
 		setBorder(new EmptyBorder(50,50,50,50));
 		setLayout(new BorderLayout());
 		setBackground(new Color(255, 211, 204));
-		
+
 		Title t = new Title();
-		
+
 		playCustom = new JButton("CREATE YOUR OWN GAME");
 		playCustom.addActionListener(this);
 		playCustom.setBackground(new Color(255, 124, 102));
@@ -53,7 +53,7 @@ public class Menu extends JPanel implements ActionListener {
 		menu.add(t, BorderLayout.CENTER);
 
 		add(menu, BorderLayout.CENTER);
-		
+
 	}
 
 	public JButton getPlayCustom() {
@@ -75,7 +75,7 @@ public class Menu extends JPanel implements ActionListener {
 			wordSearchGUI.getMenuPanel().setVisible(false);
 			layout.show(wordSearchGUI.getCard(), "Custom Puzzle");
 			revalidate();
-			
+
 
 		}
 		if (source == playCategory) {

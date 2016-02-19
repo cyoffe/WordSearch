@@ -41,7 +41,5 @@ public class WordList extends JPanel {
 	public JList<String> getList() {
 		return list;
 	}
-	public void setModel(DefaultListModel m){
-		model = m;
-	}
+
 }

@@ -82,6 +82,12 @@ public class WordSearchGUI extends JFrame {
 		return card;
 	}
 
+	public void setCustomPanel(CustomGamePanel c){
+		this.customPanel = c;
+		customPanel.revalidate();
+		customPanel.repaint();
+	}
+
 	public static void main(String[] args) {
 		WordSearchGUI gui = new WordSearchGUI();
 		gui.setVisible(true);
