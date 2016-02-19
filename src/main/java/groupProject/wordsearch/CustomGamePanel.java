@@ -56,6 +56,7 @@ public class CustomGamePanel extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				list.setModel(model = new DefaultListModel<String>());
 				word.setText("");
+				wordList = new String[15];
 				count = 0;
 				wordSearchGUI.revalidate();
 				wordSearchGUI.repaint();
@@ -194,8 +195,9 @@ public class CustomGamePanel extends JPanel {
 
 	}
 
-	public void setModel(DefaultListModel<String> m) {
-		model = m;
+	public void reset(){
+		count = 0;
+		model = new DefaultListModel<String>();
 		list.setModel(model);
 		word.setText("");
 		list.repaint();

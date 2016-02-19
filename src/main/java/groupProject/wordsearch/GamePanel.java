@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 import javax.swing.BorderFactory;
-import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -82,8 +81,7 @@ public class GamePanel extends JPanel {
 		mainMenu.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
-				wordSearchGUI.getCustomPanel().setModel(new DefaultListModel<String>());
-
+				wordSearchGUI.getCustomPanel().reset();
 				wordSearchGUI.getCategoryPanel().setVisible(false);
 				wordSearchGUI.getCardLayout().show(wordSearchGUI.getCard(),
 						"Menu");

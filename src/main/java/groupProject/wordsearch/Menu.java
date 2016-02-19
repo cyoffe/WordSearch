@@ -13,9 +13,6 @@ import javax.swing.border.EmptyBorder;
 
 public class Menu extends JPanel implements ActionListener {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JButton playCustom, playCategory, quit;
 	private WordSearchGUI wordSearchGUI;
